@@ -222,6 +222,7 @@
                 <useSwaggerAnnotations>false</useSwaggerAnnotations>
                 <skipDefaultInterface>true</skipDefaultInterface>
                 <includeHttpRequestContext>false</includeHttpRequestContext>
+                <useJackson>true</useJackson>
               </configOptions>
               <generateSupportingFiles>false</generateSupportingFiles>
               <generateApiTests>false</generateApiTests>
