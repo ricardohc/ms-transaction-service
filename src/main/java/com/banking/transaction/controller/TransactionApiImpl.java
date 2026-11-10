@@ -1,13 +1,12 @@
 package com.banking.transaction.controller;
 
 import com.banking.transaction.api.TransactionApi;
-import com.banking.transaction.document.TransactionDocument;
 import com.banking.transaction.dto.OperationAcceptedResponse;
 import com.banking.transaction.dto.TransactionCreateRequest;
 import com.banking.transaction.dto.TransactionResponse;
 import com.banking.transaction.mapper.TransactionMapper;
 import com.banking.transaction.service.TransactionService;
-import com.banking.transaction.service.impl.RxJavaBridge;
+import com.banking.transaction.service.RxJavaBridge;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-/** REST adapter implementing the generated TransactionApi contract. */
 @RestController
 @RequiredArgsConstructor
 public class TransactionApiImpl implements TransactionApi {

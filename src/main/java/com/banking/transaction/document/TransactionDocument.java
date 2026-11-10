@@ -12,10 +12,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * Transaction aggregate persisted in the banking_transaction database.
- * Money as BigDecimal with explicit currency, dates in UTC.
- */
 @Data
 @Builder
 @NoArgsConstructor
@@ -26,7 +22,6 @@ public class TransactionDocument {
     @Id
     private UUID id;
 
-    /** X-Transaction-ID used for idempotency (unique). */
     @Indexed(unique = true)
     private UUID transactionId;
 

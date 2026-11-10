@@ -11,10 +11,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * Transactional outbox entry persisted atomically with the transaction in
- * banking_transaction. Published asynchronously with retries.
- */
 @Data
 @Builder
 @NoArgsConstructor

@@ -1,9 +1,8 @@
-package com.banking.transaction.service.impl;
+package com.banking.transaction.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Provides the RxJava/Reactor bridge as a Spring bean. */
 @Configuration
 public class BridgeConfig {
 

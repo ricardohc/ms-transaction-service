@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.reactive.ReactiveKafkaProducerTemplate;
 import reactor.kafka.sender.SenderOptions;
 
-/** Reactive Kafka producer configuration. */
 @Configuration
 public class KafkaConfig {
 

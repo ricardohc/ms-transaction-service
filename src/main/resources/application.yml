@@ -7,20 +7,53 @@ spring:
 
   data:
     mongodb:
-      uri: ${MONGODB_URI:mongodb://localhost:27017/banking_yanki}
+      uri: ${MONGODB_URI:mongodb://localhost:27017/banking_transaction}
       auto-index-creation: true
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2s
 
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
 
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: ${JWT_ISSUER_URI:http://localhost:9000}
+
+external:
+  services:
+    account:
+      url: ${ACCOUNT_SERVICE_URL:http://localhost:8082}
+    credit:
+      url: ${CREDIT_SERVICE_URL:http://localhost:8083}
+    card:
+      url: ${CARD_SERVICE_URL:http://localhost:8084}
+    wallet:
+      url: ${WALLET_SERVICE_URL:http://localhost:8086}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      account-cb:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        registerHealthIndicator: true
+        ignoreExceptions:
+          - com.banking.transaction.exception.BusinessValidationException
+  timelimiter:
+    instances:
+      account-cb:
+        timeoutDuration: 3s
 
 eureka:
   client:
@@ -32,17 +65,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus
+        include: health,info,metrics,prometheus,circuitbreakers
   endpoint:
     health:
       show-details: always
-
-springdoc:
-  api-docs:
-    path: /v3/api-docs
-  swagger-ui:
-    path: /swagger-ui.html
-
-logging:
-  level:
-    com.banking.transaction: DEBUG

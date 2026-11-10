@@ -3,7 +3,6 @@ package com.banking.transaction.mapper;
 import java.util.UUID;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-/** Small helper to convert values to JsonNullable. */
 public final class NullableMapper {
 
     private NullableMapper() {
